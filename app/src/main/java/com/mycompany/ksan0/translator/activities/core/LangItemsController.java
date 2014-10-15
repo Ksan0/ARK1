@@ -29,7 +29,33 @@ public class LangItemsController {
         return langItems;
     }
 
-    //public void findAllMatchesToLang()
+    public LangItem findBy(String fromTitle, String toTitle) {
+        for (LangItem item: langItems) {
+            if (item.getFromTitle().equals(fromTitle) && item.getToTitle().equals(toTitle)) {
+                return item;
+            }
+        }
+        return null;
+    }
 
+    public ArrayList<String> findAllMatchesToLangTitle(String title) {
+        ArrayList<String> arr = new ArrayList<String>();
+        for (LangItem item: langItems) {
+            if (item.getToTitle().equals(title)) {
+                arr.add(item.getFromTitle());
+            }
+        }
+        return arr;
+    }
+
+    public ArrayList<String> findAllMatchesFromLangTitle(String title) {
+        ArrayList<String> arr = new ArrayList<String>();
+        for (LangItem item: langItems) {
+            if (item.getFromTitle().equals(title)) {
+                arr.add(item.getToTitle());
+            }
+        }
+        return arr;
+    }
 
 }
