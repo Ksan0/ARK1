@@ -9,14 +9,12 @@ import android.view.ViewGroup;
 
 import com.mycompany.ksan0.translator.R;
 import com.mycompany.ksan0.translator.activities.activities.FragmentsController;
-import com.mycompany.ksan0.translator.activities.core.LangItemsController;
 import com.mycompany.ksan0.translator.activities.network.AsyncTaskInitDownload;
 
 
 public class SplashFragment extends Fragment {
 
     private FragmentsController fragmentsController;
-    private LangItemsController langItemsController;
     private AsyncTaskInitDownload taskInitDownload;
 
     @Override
@@ -31,7 +29,7 @@ public class SplashFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_splash, container, false);
 
         if (taskInitDownload == null) {
-            taskInitDownload = new AsyncTaskInitDownload(fragmentsController, langItemsController, null);
+            taskInitDownload = new AsyncTaskInitDownload(fragmentsController, null);
             taskInitDownload.execute();
         }
 
@@ -43,7 +41,6 @@ public class SplashFragment extends Fragment {
         super.onAttach(activity);
         try {
             fragmentsController = (FragmentsController) activity;
-            langItemsController = (LangItemsController) activity;
         } catch (ClassCastException e) {
         }
     }
@@ -52,7 +49,6 @@ public class SplashFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         fragmentsController = null;
-        langItemsController = null;
     }
 
 }

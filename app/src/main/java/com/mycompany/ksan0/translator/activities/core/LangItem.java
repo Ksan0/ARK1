@@ -15,17 +15,17 @@ public class LangItem implements Parcelable {
         }
     };
 
+    private String from;
+    private String to;
+    private String fromTitle;
+    private String toTitle;
+
     private LangItem(Parcel parcel) {
         from    = parcel.readString();
         to      = parcel.readString();
         fromTitle = parcel.readString();
         toTitle = parcel.readString();
     }
-
-    private String from;
-    private String to;
-    private String fromTitle;
-    private String toTitle;
 
     public LangItem(String from, String to, String fromTitle, String toTitle) {
         this.from       = from;

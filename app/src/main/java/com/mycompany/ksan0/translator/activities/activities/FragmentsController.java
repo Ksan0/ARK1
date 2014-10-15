@@ -6,5 +6,5 @@ import android.app.Fragment;
  * Created by ksan0 on 13.10.14.
  */
 public interface FragmentsController {
-    public void setFragment(Fragment fragment);
+    public void setFragment(Fragment fragment, boolean addToBackStack);
 }

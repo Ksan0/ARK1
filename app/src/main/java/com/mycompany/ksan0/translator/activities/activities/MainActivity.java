@@ -2,20 +2,16 @@ package com.mycompany.ksan0.translator.activities.activities;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.mycompany.ksan0.translator.R;
-import com.mycompany.ksan0.translator.activities.core.LangItem;
-import com.mycompany.ksan0.translator.activities.core.LangItemsController;
 import com.mycompany.ksan0.translator.activities.fragments.SplashFragment;
 
 import java.util.ArrayList;
 
 
-public class MainActivity extends Activity implements FragmentsController, LangItemsController {
-
-    private ArrayList<LangItem> langItems;
+public class MainActivity extends Activity implements FragmentsController {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,21 +21,16 @@ public class MainActivity extends Activity implements FragmentsController, LangI
     }
 
     @Override
-    public void setLangItems(ArrayList<LangItem> items) {
-        langItems = items;
-    }
+    public void setFragment(Fragment fragment, boolean addToBackStack) {
+        FragmentTransaction trans = getFragmentManager().beginTransaction();
 
-    @Override
-    public ArrayList<LangItem> getLangItems() {
-        return langItems;
-    }
+        if (addToBackStack) {
+            trans = trans.addToBackStack(null);
+        }
 
-    @Override
-    public void setFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.activity_main, fragment)
-                .commitAllowingStateLoss();
+        trans.replace(R.id.activity_main, fragment)
+            .commitAllowingStateLoss();
+
     }
 
     public void updateFragment() {
@@ -48,7 +39,7 @@ public class MainActivity extends Activity implements FragmentsController, LangI
             fragment = new SplashFragment();
         }
 
-        setFragment(fragment);
+        setFragment(fragment, false);
     }
 
     private Fragment findLastFragment() {
