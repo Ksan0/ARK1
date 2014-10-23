@@ -28,7 +28,7 @@ public class AsyncTaskInitDownload extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... params) {
         String response = RequestHelper.makeEmptyGetRequest(URLHelper.getLangs());
         ArrayList<LangItem> langItems = new ArrayList<LangItem>();
-        ResponseHelper.parseResponse(response, langItems);
+        ResponseHelper.parseLangListResponse(response, langItems);
         LangItemsController.getInstance().setLangItems(langItems);
         return null;
     }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class ResponseHelper {
 
-    public static void parseResponse(String response, ArrayList<LangItem> outLangItems) {
+    public static void parseLangListResponse(String response, ArrayList<LangItem> outLangItems) {
         try {
             JSONObject jsonObject = new JSONObject(response);
             JSONArray jsonDirs = (JSONArray) jsonObject.get("dirs");
@@ -31,4 +31,20 @@ public class ResponseHelper {
         }
     }
 
+    public static String parseTranslateResponse(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray textArray = jsonObject.getJSONArray("text");
+
+            String result = "";
+            for (int i = 0; i < textArray.length(); ++i) {
+                result += textArray.getString(i) + "\n";
+            }
+
+            return result;
+        } catch(Exception e) {
+        }
+
+        return null;
+    }
 }
